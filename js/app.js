@@ -3,19 +3,19 @@ document.getElementById("emty-input").style.display = "none";
 document.getElementById("incorrect").style.display = "none";
 document.getElementById("error-massege").style.display = "none";
 
-// Call data 
+// Call data
 document.getElementById("search-btn").addEventListener("click", () => {
   const searchInput = document.getElementById("search-input");
   const searchText = searchInput.value;
 
   // Display Cleare
-  // input cleare 
-    searchInput.value = "";
-// display cleare 
+  // input cleare
+  searchInput.value = "";
+  // display cleare
   document.getElementById("emty-input").style.display = "none";
   document.getElementById("incorrect").style.display = "none";
   document.getElementById("error-massege").style.display = "none";
-// result cleare 
+  // result cleare
   const detilesConteinar = document.getElementById("phone-detiles");
   detilesConteinar.textContent = "";
   const searchResult = document.getElementById("search-result");
@@ -37,13 +37,13 @@ document.getElementById("search-btn").addEventListener("click", () => {
   };
 });
 
-// Display Phone 
+// Display Phone
 const displayPhones = (phones) => {
   if (phones.length == 0) {
     document.getElementById("incorrect").style.display = "block";
     return;
   } else {
-    // previous data cleare 
+    // previous data cleare
     const searchResult = document.getElementById("search-result");
     searchResult.textContent = "";
 
@@ -68,7 +68,7 @@ const displayPhones = (phones) => {
     });
   }
 };
-// Load Phone detiles 
+// Load Phone detiles
 const loadDetiles = (phoneId) => {
   const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
   fetch(url)
@@ -76,27 +76,92 @@ const loadDetiles = (phoneId) => {
     .then((data) => displayDetiles(data.data));
 };
 
-// Display detiles 
+// Display detiles
 const displayDetiles = (detiles) => {
   const detilesConteinar = document.getElementById("phone-detiles");
   detilesConteinar.textContent = "";
+
+  // Sensors Others And Release Date Verification 
+  const sensors = () => {
+    const sensors = detiles.mainFeatures.sensors;
+    if (sensors.length === 0) {
+      return "There is no sensor in this phone";
+    } else {
+      return sensors;
+    }
+  };
+  const sensor = sensors();
+  
+  const other = () => {
+    if (detiles.others === undefined) {
+      return "No others facilities";
+    } else {
+      const another = detiles.others;
+      const bluetooth = another.Bluetooth;
+      const gps = another.GPS;
+      const nfc = another.NFC;
+      const radio = another.Radio;
+      const usb = another.USB;
+      const wlan = another.WLAN;
+      const allOthers =
+        "Bluetooth: " +
+        bluetooth +
+        ", " +
+        "GPS: " +
+        gps +
+        ", " +
+        "NFC: " +
+        nfc +
+        ", " +
+        "Radio: " +
+        radio +
+        ", " +
+        "USB: " +
+        usb +
+        ", " +
+        "WLAN: " +
+        wlan;
+      return allOthers;
+    }
+  };
+  const others = other();
+
+  const releaseDate = () => {
+    if (detiles.releaseDate === "") {
+      return "No Release Date";
+    } else {
+      return detiles.releaseDate;
+    }
+  };
+
   const div = document.createElement("div");
   div.classList.add("row");
   div.innerHTML = `
            <div class="col-md-4">
-              <img src="${detiles.image}" class="img-fluid rounded-start" alt="..." />
+              <img src="${
+                detiles.image
+              }" class="img-fluid rounded-start" alt="Phone Detiles" />
             </div>
             <div class="col-md-8">
               <div class="card-body">
-                <h5 class="card-title">${detiles.name} - <small class="fs-6 fw-light">(${detiles.brand})</small></h5>
-                <p>${detiles.releaseDate}</p>
-                <p>Main Features:
-                <br>Chip Set: ${detiles.mainFeatures.chipSet} 
-                <br>Display Size: ${detiles.mainFeatures.displaySize}
-                <br>Memory: ${detiles.mainFeatures.memory}</p>
-                <p></p>
-                <p>Others:
-                <br></p>
+                <h5 class="card-title fs-4">${
+                  detiles.name
+                } - <small class="fs-4 fw-light">(${detiles.brand})</small></h5>
+                <p>${releaseDate()}</p>
+                <p><span class="fw-bold fs-6">Main Features:</span>
+                <br><span class="fw-bold">Chip Set: </span>${
+                  detiles.mainFeatures.chipSet
+                } 
+                <br><span class="fw-bold">Display Size: </span>${
+                  detiles.mainFeatures.displaySize
+                }
+                <br><span class="fw-bold">Memory: </span>${
+                  detiles.mainFeatures.memory
+                }</p>
+                <p><span class="fw-bold">sensors:</span>
+                <br>${sensor}</p>
+                <p><span class="fw-bold">Others:</span>
+                <br>${others}</p>
               </div>
            </div>
   `;
