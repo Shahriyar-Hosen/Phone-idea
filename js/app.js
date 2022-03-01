@@ -3,16 +3,19 @@ document.getElementById("emty-input").style.display = "none";
 document.getElementById("incorrect").style.display = "none";
 document.getElementById("error-massege").style.display = "none";
 
+// Call data 
 document.getElementById("search-btn").addEventListener("click", () => {
   const searchInput = document.getElementById("search-input");
   const searchText = searchInput.value;
 
   // Display Cleare
+  // input cleare 
     searchInput.value = "";
+// display cleare 
   document.getElementById("emty-input").style.display = "none";
   document.getElementById("incorrect").style.display = "none";
   document.getElementById("error-massege").style.display = "none";
-
+// result cleare 
   const detilesConteinar = document.getElementById("phone-detiles");
   detilesConteinar.textContent = "";
   const searchResult = document.getElementById("search-result");
@@ -26,7 +29,7 @@ document.getElementById("search-btn").addEventListener("click", () => {
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
     fetch(url)
       .then((res) => res.json())
-      .then((data) => loadPhones(data.data))
+      .then((data) => displayPhones(data.data))
       .catch((error) => displayError(error));
   }
   const displayError = (error) => {
@@ -34,13 +37,16 @@ document.getElementById("search-btn").addEventListener("click", () => {
   };
 });
 
-const loadPhones = (phones) => {
+// Display Phone 
+const displayPhones = (phones) => {
   if (phones.length == 0) {
     document.getElementById("incorrect").style.display = "block";
     return;
   } else {
+    // previous data cleare 
     const searchResult = document.getElementById("search-result");
     searchResult.textContent = "";
+
     phones.forEach((phone) => {
       const div = document.createElement("div");
       div.classList.add("col");
@@ -62,7 +68,7 @@ const loadPhones = (phones) => {
     });
   }
 };
-
+// Load Phone detiles 
 const loadDetiles = (phoneId) => {
   const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
   fetch(url)
@@ -70,6 +76,7 @@ const loadDetiles = (phoneId) => {
     .then((data) => displayDetiles(data.data));
 };
 
+// Display detiles 
 const displayDetiles = (detiles) => {
   const detilesConteinar = document.getElementById("phone-detiles");
   detilesConteinar.textContent = "";
