@@ -7,8 +7,8 @@ document.getElementById("error-massege").style.display = "none";
 document.getElementById("search-btn").addEventListener("click", () => {
   const searchInput = document.getElementById("search-input");
   const searchText = searchInput.value;
-
   // Display Cleare
+  document.getElementById("first-look").style.display = "none";
   // input cleare
   searchInput.value = "";
   // display cleare
@@ -39,6 +39,7 @@ document.getElementById("search-btn").addEventListener("click", () => {
 
 // Display Phone
 const displayPhones = (phones) => {
+  console.log(phones)
   if (phones.length == 0) {
     document.getElementById("incorrect").style.display = "block";
     return;
@@ -46,8 +47,8 @@ const displayPhones = (phones) => {
     // previous data cleare
     const searchResult = document.getElementById("search-result");
     searchResult.textContent = "";
-
-    phones.forEach((phone) => {
+    // New data display
+    phones.slice(0,20).forEach((phone) => {
       const div = document.createElement("div");
       div.classList.add("col");
       div.innerHTML = `
@@ -68,6 +69,7 @@ const displayPhones = (phones) => {
     });
   }
 };
+
 // Load Phone detiles
 const loadDetiles = (phoneId) => {
   const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
@@ -81,8 +83,9 @@ const displayDetiles = (detiles) => {
   const detilesConteinar = document.getElementById("phone-detiles");
   detilesConteinar.textContent = "";
 
-  // Sensors Others And Release Date Verification 
+  // Sensors Others And Release Date Verification
   const sensors = () => {
+    // Sensors
     const sensors = detiles.mainFeatures.sensors;
     if (sensors.length === 0) {
       return "There is no sensor in this phone";
@@ -90,8 +93,9 @@ const displayDetiles = (detiles) => {
       return sensors;
     }
   };
+
   const sensor = sensors();
-  
+  // Others
   const other = () => {
     if (detiles.others === undefined) {
       return "No others facilities";
@@ -126,6 +130,7 @@ const displayDetiles = (detiles) => {
   };
   const others = other();
 
+  // Release Date
   const releaseDate = () => {
     if (detiles.releaseDate === "") {
       return "No Release Date";
@@ -134,6 +139,7 @@ const displayDetiles = (detiles) => {
     }
   };
 
+  // Display phone detiles
   const div = document.createElement("div");
   div.classList.add("row");
   div.innerHTML = `
