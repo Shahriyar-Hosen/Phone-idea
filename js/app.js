@@ -22,7 +22,7 @@ document.getElementById("search-btn").addEventListener("click", () => {
   searchResult.textContent = "";
 
   // Data load
-  if (searchText == "") {
+  if (searchText === "") {
     document.getElementById("emty-input").style.display = "block";
     return;
   } else {
@@ -39,8 +39,7 @@ document.getElementById("search-btn").addEventListener("click", () => {
 
 // Display Phone
 const displayPhones = (phones) => {
-  console.log(phones)
-  if (phones.length == 0) {
+  if (phones.length === 0) {
     document.getElementById("incorrect").style.display = "block";
     return;
   } else {
@@ -143,10 +142,10 @@ const displayDetiles = (detiles) => {
   const div = document.createElement("div");
   div.classList.add("row");
   div.innerHTML = `
-           <div class="col-md-4">
+           <div class="col-md-4 pt-5 pb-5 d-flex justify-content-center align-content-center">
               <img src="${
                 detiles.image
-              }" class="img-fluid rounded-start" alt="Phone Detiles" />
+              }" class="img" alt="Phone Detiles" />
             </div>
             <div class="col-md-8">
               <div class="card-body">

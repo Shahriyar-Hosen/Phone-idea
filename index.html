@@ -12,63 +12,76 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    <!-- Vanilla CSS -->
+    <link rel="stylesheet" href="css/style.css" />
     <link rel="shortcut icon" href="img/f-icon.png" type="image/x-icon" />
   </head>
-  <body>
-    <header class="m-4">
-      <h1 class="text-center text-primary fs-1 fw-bolder mb-3">Phone Idea</h1>
+
+  <body class="bg-mane">
+    <header class="m-5">
+      <h1 class="text-center fs-1 fw-bolder m-5"><span class="bg-info text-white p-3 ps-5 pe-5 rounded-pill ">Phone Idea</span></h1>
 
       <!-- Search fild  -->
       <div class="input-group mb-3 w-50 mx-auto">
         <input
           id="search-input"
           type="text"
-          class="form-control border-info"
+          class="bg-phone form-control border-info"
           placeholder="!! Search you want phone"
           aria-label="Search you want phone"
           aria-describedby="button-addon2"
         />
-        <button class="btn btn-outline-info" type="button" id="search-btn">
+        <button
+          class="bg-phone btn btn-outline-info"
+          type="button"
+          id="search-btn"
+        >
           Search
         </button>
       </div>
     </header>
 
-    <section id="first-look" class="container">
-      <h1 class="text-center text-info fw-bolder">Search for the name of your favorite phone</h1>
-      <div class="d-flex justify-content-center">
-        <img
-          class="img-fluid rounded-start"
-          src="img/Favorite-Phone.jpg"
-          alt=""
-          style="max-width: 40%"
-        />
-      </div>
-    </section>
+    <main class="">
+      <section id="first-look" class="container">
+        <h1 class="text-center text-info fw-bolder">
+          Search for the name of your favorite phone
+        </h1>
+        <div class="d-flex justify-content-center">
+          <img
+            class="img-fluid rounded-start"
+            src="img/Favorite-Phone.png"
+            alt=""
+            style="max-width: 40%"
+          />
+        </div>
+      </section>
 
-    <!-- Error Massage -->
-    <div id="emty-input" class="text-danger text-center fs-4">
-      <p>Please write something</p>
-    </div>
-    <div id="incorrect" class="text-danger text-center fs-4">
-      <p>There is no phone with this name. Please find another name</p>
-    </div>
-    <div id="error-massege" class="text-danger text-center fs-4">
-      <p>something want wrong please try again later</p>
-    </div>
+      <section>
+        <!-- Error Massage -->
+        <div id="emty-input" class="text-danger text-center fs-4">
+          <p>Please write something</p>
+        </div>
+        <div id="incorrect" class="text-danger text-center fs-4">
+          <p>There is no phone with this name. Please find another name</p>
+        </div>
+        <div id="error-massege" class="text-danger text-center fs-4">
+          <p>something want wrong please try again later</p>
+        </div>
+      </section>
 
-    <!-- Phone detiles -->
-    <section class="container">
-      <div id="phone-detiles" class="mt-5 card border-0 w-75 mx-auto"></div>
-    </section>
-
-    <!-- Search Result  -->
-    <section>
-      <div
-        id="search-result"
-        class="container m-4 mx-auto row row-cols-1 row-cols-md-3 g-4"
-      ></div>
-    </section>
+      <!-- Phone detiles -->
+      <section class="container bg-white">
+        <div id="phone-detiles" class="mt-4 card border-0 w-75 mx-auto"></div>
+      </section>
+<samp class=""></samp>
+      <!-- Search Result  -->
+      <section>
+        <div
+          id="search-result"
+          class="container m-4 mx-auto row row-cols-1 row-cols-md-3 g-4 bg-white"
+        ></div>
+      </section>
+    </main>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
