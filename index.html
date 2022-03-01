@@ -32,18 +32,30 @@
         </button>
       </div>
     </header>
-    <!-- Search Result and detiles -->
-    <main id="result-filed">
-      <section class="container">
-        <div id="phone-detiles" class="card mb-3 mx-auto border-0"></div>
-      </section>
-      <section class="container m-5 mx-auto">
-        <div id="search-result" class="row row-cols-1 row-cols-md-3 g-4 "> 
 
+    <!-- Error Massage -->
+    <div id="emty-input" class="text-danger text-center fs-4">
+      <p>Please write something</p>
+    </div>
+    <div id="incorrect" class="text-danger text-center fs-4">
+      <p>There is no phone with this name. Please find another name</p>
+    </div>
+    <div id="error-massege" class="text-danger text-center fs-4">
+      <p>something want wrong please try again later</p>
+    </div>
 
-        </div>
-      </section>
-    </main>
+    <!-- Phone detiles -->
+    <section class="container">
+      <div id="phone-detiles" class="mt-5 card border-0  w-75 mx-auto"></div>
+    </section>
+
+    <!-- Search Result  -->
+    <section>
+      <div
+        id="search-result"
+        class="container m-4 mx-auto row row-cols-1 row-cols-md-3 g-4"
+      ></div>
+    </section>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
