@@ -23,11 +23,19 @@ const loadPhones = (phones) => {
               </h6>
             </div>
             <div class="mx-auto m-3">
-              <button class="btn btn-primary">See Detiles</button>
+              <button onclick="loadDetiles('${phone.slug}')" class="btn btn-primary">See Detiles</button>
             </div>
           </div>
       `;
       searchResult.appendChild(div)
-    console.log(phone);
+    // console.log(phone.slug);
   });
 };
+
+const loadDetiles = (phoneId)=>{
+  const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
+  fetch(url)
+  .then(res=>res.json())
+  .then(data=>console.log(data))
+};
+
